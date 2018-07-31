@@ -1,0 +1,26 @@
+{
+  "name": "jozefgrencik/validator",
+  "type": "library",
+  "description": "Validator",
+  "version": "0.1.0",
+  "keywords": [
+    "validation",
+    "validator"
+  ],
+  "homepage": "https://github.com/jozefgrencik/validator",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jozef Grencik"
+    }
+  ],
+  "minimum-stability": "alpha",
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "JozefGrencik\\Validator\\": "src/"
+    }
+  }
+}
