@@ -1,0 +1,7 @@
+<phpunit>
+    <testsuites>
+        <testsuite name="ValidatorTests">
+            <directory>Validator</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
