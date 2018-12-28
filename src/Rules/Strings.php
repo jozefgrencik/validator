@@ -20,6 +20,26 @@ class Strings extends Rule {
     }
 
     /**
+     * Check if String has exact length.
+     * @param int $length
+     * @return Strings
+     */
+    public function length(int $length): self {
+        if ($length < 0) {
+            throw new InvalidArgumentException('Argument must be bigger or equal than zero');
+        }
+        $this->addTest(__FUNCTION__, func_get_args(),
+            function (string $value) use ($length) {
+                if (mb_strlen($value) !== $length) {
+                    throw new InvalidStringException('todo');
+                }
+            }
+        );
+
+        return $this;
+    }
+
+    /**
      * Check if String is not empty.
      * @return Strings
      */
@@ -27,6 +47,23 @@ class Strings extends Rule {
         $this
             ->maxLength(0)
             ->alterLastName(__FUNCTION__, func_get_args());
+
+        return $this;
+    }
+
+    /**
+     * Check if String has length lower or equal than $maxLength.
+     * @param int $maxLength
+     * @return Strings
+     */
+    public function maxLength(int $maxLength): self {
+        $this->addTest(__FUNCTION__, func_get_args(),
+            function (string $value) use ($maxLength) {
+                if (mb_strlen($value) > $maxLength) {
+                    throw new InvalidStringException('todo');
+                }
+            }
+        );
 
         return $this;
     }
@@ -54,26 +91,6 @@ class Strings extends Rule {
     }
 
     /**
-     * Check if String has exact length.
-     * @param int $length
-     * @return Strings
-     */
-    public function length(int $length): self {
-        if ($length < 0) {
-            throw new InvalidArgumentException('Argument must be bigger or equal than zero');
-        }
-        $this->addTest(__FUNCTION__, func_get_args(),
-            function (string $value) use ($length) {
-                if (mb_strlen($value) !== $length) {
-                    throw new InvalidStringException('todo');
-                }
-            }
-        );
-
-        return $this;
-    }
-
-    /**
      * Check if String has length bigger or equal than $minLength.
      * @param int $minLength
      * @return Strings
@@ -85,23 +102,6 @@ class Strings extends Rule {
         $this->addTest(__FUNCTION__, func_get_args(),
             function (string $value) use ($minLength) {
                 if (mb_strlen($value) < $minLength) {
-                    throw new InvalidStringException('todo');
-                }
-            }
-        );
-
-        return $this;
-    }
-
-    /**
-     * Check if String has length lower or equal than $maxLength.
-     * @param int $maxLength
-     * @return Strings
-     */
-    public function maxLength(int $maxLength): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
-            function (string $value) use ($maxLength) {
-                if (mb_strlen($value) > $maxLength) {
                     throw new InvalidStringException('todo');
                 }
             }
