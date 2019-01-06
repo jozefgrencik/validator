@@ -57,6 +57,9 @@ class Strings extends Rule {
      * @return Strings
      */
     public function maxLength(int $maxLength): self {
+        if ($maxLength < 0) {
+            throw new InvalidArgumentException('Argument must be bigger or equal than zero');
+        }
         $this->addTest(__FUNCTION__, func_get_args(),
             function (string $value) use ($maxLength) {
                 if (mb_strlen($value) > $maxLength) {
@@ -75,9 +78,22 @@ class Strings extends Rule {
      * @return Strings
      */
     public function lengthBetween(int $minLength = NULL, int $maxLength = NULL): self {
-        if ($minLength < 0) {
-            throw new InvalidArgumentException('Argument must be bigger or equal than zero');
+        if ($minLength === NULL) {
+            $minLength = 0;
+        } elseif ($minLength < 0) {
+            throw new InvalidArgumentException('First argument must be bigger or equal than zero');
         }
+
+        if ($maxLength === NULL) {
+            $maxLength = PHP_INT_MAX;
+        } elseif ($maxLength < 0) {
+            throw new InvalidArgumentException('Second argument must be bigger or equal than zero');
+        }
+
+        if ($minLength > $maxLength) {
+            throw new InvalidArgumentException('Second argument must be bigger or equal than first argument');
+        }
+
         $this->addTest(__FUNCTION__, func_get_args(),
             function (string $value) use ($minLength, $maxLength) {
                 $length = mb_strlen($value);
