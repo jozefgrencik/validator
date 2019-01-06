@@ -16,7 +16,7 @@ class StringsTest extends TestCase {
     public function testLength() {
         $wasException = FALSE;
         try {
-            $validator = Validator::string()->length(-1);
+            Validator::string()->length(-1);
         } catch (InvalidArgumentException $exception) {
             $wasException = TRUE;
         }
@@ -74,7 +74,35 @@ class StringsTest extends TestCase {
      * @throws \Exception
      */
     public function testMaxLength() {
+        $wasException = FALSE;
+        try {
+            Validator::string()->maxLength(-1);
+        } catch (InvalidArgumentException $exception) {
+            $wasException = TRUE;
+        }
+        $this->assertTrue($wasException);
 
+        $validator = Validator::string()->maxLength(0);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertFalse($validator->isValid(' '));
+        $this->assertFalse($validator->isValid('č'));
+        $this->assertFalse($validator->isValid('0'));
+        $this->assertFalse($validator->isValid('lorem'));
+
+        $validator = Validator::string()->maxLength(1);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertFalse($validator->isValid('lorem'));
+
+        $validator = Validator::string()->maxLength(5);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
+        $this->assertFalse($validator->isValid('lorem ipsum'));
     }
 
     /**
@@ -107,7 +135,6 @@ class StringsTest extends TestCase {
         }
         $this->assertTrue($wasException);
 
-
         $validator = Validator::string()->minLength(0);
         $this->assertTrue($validator->isValid(''));
         $this->assertTrue($validator->isValid(' '));
@@ -121,7 +148,6 @@ class StringsTest extends TestCase {
         $this->assertTrue($validator->isValid('č'));
         $this->assertTrue($validator->isValid('0'));
         $this->assertTrue($validator->isValid('lorem'));
-
 
         $validator = Validator::string()->minLength(5);
         $this->assertFalse($validator->isValid(''));
