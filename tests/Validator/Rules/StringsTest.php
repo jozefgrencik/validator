@@ -66,7 +66,117 @@ class StringsTest extends TestCase {
      * @throws \Exception
      */
     public function testLengthBetween() {
+        $wasException = FALSE;
+        try {
+            Validator::string()->lengthBetween(-1, 5);
+        } catch (InvalidArgumentException $exception) {
+            $wasException = TRUE;
+        }
+        $this->assertTrue($wasException);
 
+
+        $wasException = FALSE;
+        try {
+            Validator::string()->lengthBetween(5, -1);
+        } catch (InvalidArgumentException $exception) {
+            $wasException = TRUE;
+        }
+        $this->assertTrue($wasException);
+
+
+        $wasException = FALSE;
+        try {
+            Validator::string()->lengthBetween(3, 1);
+        } catch (InvalidArgumentException $exception) {
+            $wasException = TRUE;
+        }
+        $this->assertTrue($wasException);
+
+        //first parameter NULL
+        $validator = Validator::string()->lengthBetween(NULL, 0);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertFalse($validator->isValid(' '));
+        $this->assertFalse($validator->isValid('č'));
+        $this->assertFalse($validator->isValid('0'));
+        $this->assertFalse($validator->isValid('lorem'));
+
+        $validator = Validator::string()->lengthBetween(NULL, 1);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertFalse($validator->isValid('lorem'));
+
+        $validator = Validator::string()->lengthBetween(NULL, 5);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
+
+        //second parameter NULL
+        $validator = Validator::string()->lengthBetween(0, NULL);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
+
+        $validator = Validator::string()->lengthBetween(1, NULL);
+        $this->assertFalse($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
+
+        $validator = Validator::string()->lengthBetween(5, NULL);
+        $this->assertFalse($validator->isValid(''));
+        $this->assertFalse($validator->isValid(' '));
+        $this->assertFalse($validator->isValid('č'));
+        $this->assertFalse($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
+
+        //first parameter 0
+        $validator = Validator::string()->lengthBetween(0, 0);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertFalse($validator->isValid(' '));
+        $this->assertFalse($validator->isValid('č'));
+        $this->assertFalse($validator->isValid('0'));
+        $this->assertFalse($validator->isValid('lorem'));
+
+        $validator = Validator::string()->lengthBetween(0, 1);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertFalse($validator->isValid('lorem'));
+
+        $validator = Validator::string()->lengthBetween(0, 5);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
+        $this->assertFalse($validator->isValid('lorem ipsum'));
+
+        //first 1
+        $validator = Validator::string()->lengthBetween(1, 5);
+        $this->assertFalse($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
+        $this->assertFalse($validator->isValid('lorem ipsum'));
+
+        //first 5
+        $validator = Validator::string()->lengthBetween(5, 11);
+        $this->assertFalse($validator->isValid(''));
+        $this->assertFalse($validator->isValid(' '));
+        $this->assertFalse($validator->isValid('č'));
+        $this->assertFalse($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
+        $this->assertTrue($validator->isValid('lorem ipsum'));
+        $this->assertFalse($validator->isValid('lorem ipsum amet'));
     }
 
     /**
