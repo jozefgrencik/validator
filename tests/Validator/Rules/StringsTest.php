@@ -14,7 +14,34 @@ class StringsTest extends TestCase {
      * @throws \Exception
      */
     public function testLength() {
+        $wasException = FALSE;
+        try {
+            $validator = Validator::string()->length(-1);
+        } catch (InvalidArgumentException $exception) {
+            $wasException = TRUE;
+        }
+        $this->assertTrue($wasException);
 
+        $validator = Validator::string()->length(0);
+        $this->assertTrue($validator->isValid(''));
+        $this->assertFalse($validator->isValid(' '));
+        $this->assertFalse($validator->isValid('č'));
+        $this->assertFalse($validator->isValid('0'));
+        $this->assertFalse($validator->isValid('lorem'));
+
+        $validator = Validator::string()->length(1);
+        $this->assertFalse($validator->isValid(''));
+        $this->assertTrue($validator->isValid(' '));
+        $this->assertTrue($validator->isValid('č'));
+        $this->assertTrue($validator->isValid('0'));
+        $this->assertFalse($validator->isValid('lorem'));
+
+        $validator = Validator::string()->length(5);
+        $this->assertFalse($validator->isValid(''));
+        $this->assertFalse($validator->isValid(' '));
+        $this->assertFalse($validator->isValid('č'));
+        $this->assertFalse($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('lorem'));
     }
 
     /**
