@@ -97,7 +97,7 @@ class Strings extends Rule {
         $this->addTest(__FUNCTION__, func_get_args(),
             function (string $value) use ($minLength, $maxLength) {
                 $length = mb_strlen($value);
-                if ($length > $minLength || $length < $maxLength) {
+                if ($length < $minLength || $length > $maxLength) {
                     throw new InvalidStringException('todo');
                 }
             }
