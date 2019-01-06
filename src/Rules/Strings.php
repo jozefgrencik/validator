@@ -45,7 +45,7 @@ class Strings extends Rule {
      */
     public function notEmpty(): self {
         $this
-            ->maxLength(0)
+            ->minLength(1)
             ->alterLastName(__FUNCTION__, func_get_args());
 
         return $this;
