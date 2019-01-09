@@ -29,6 +29,12 @@ class Rule implements iRule {
         return $this;
     }
 
+    /**
+     * todo
+     * @param string $testName
+     * @param array $testArguments
+     * @return Rule
+     */
     protected function alterLastName(string $testName, array $testArguments): self {
         $this->tests[count($this->tests) - 1]['name'] = $this->getTestName($testName, $testArguments);
 
@@ -36,7 +42,7 @@ class Rule implements iRule {
     }
 
     /**
-     * todo
+     * Throws exception if one Test fails.
      * @param mixed $value
      */
     public function assert($value) {
@@ -46,7 +52,7 @@ class Rule implements iRule {
     }
 
     /**
-     * todo
+     * Returns TRUE if all Tests passed.
      * @param mixed $value
      * @return bool
      */
@@ -63,7 +69,7 @@ class Rule implements iRule {
     }
 
     /**
-     * todo
+     * Returns name of test. For debugging purposes.
      * @param string $testName
      * @param array $testArguments
      * @return string
