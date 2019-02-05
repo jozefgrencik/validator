@@ -3,6 +3,7 @@
 namespace JozefGrencik\Validator;
 
 use JozefGrencik\Validator\Rules\Integer;
+use JozefGrencik\Validator\Rules\Math;
 use JozefGrencik\Validator\Rules\Strings;
 
 class Validator {
@@ -24,4 +25,14 @@ class Validator {
     public static function integer(): Integer {
         return new Integer();
     }
+
+    /**
+     * todo
+     * @return Math
+     */
+    public static function math(): Math {
+        return new Math();
+    }
+
+
 }
