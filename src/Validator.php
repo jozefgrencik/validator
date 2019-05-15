@@ -2,6 +2,7 @@
 
 namespace JozefGrencik\Validator;
 
+use JozefGrencik\Validator\Rules\Encoding;
 use JozefGrencik\Validator\Rules\Integer;
 use JozefGrencik\Validator\Rules\Math;
 use JozefGrencik\Validator\Rules\Net;
@@ -21,6 +22,7 @@ class Validator {
 
     /**
      * todo
+     * todo rename keyword?
      * @return Integer
      */
     public static function integer(): Integer {
@@ -43,5 +45,12 @@ class Validator {
         return new Net();
     }
 
+    /**
+     * todo
+     * @return Encoding
+     */
+    public static function encoding(): Encoding {
+        return new Encoding();
+    }
 
 }
