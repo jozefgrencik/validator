@@ -4,7 +4,8 @@ namespace JozefGrencik\Validator\Rules;
 
 use JozefGrencik\Validator\Exceptions\InvalidStringException;
 
-class Encoding extends Rule {
+class Encoding extends Rule
+{
 
     /**
      * Check if String is encoded with Base64.
@@ -13,7 +14,8 @@ class Encoding extends Rule {
      * @todo regexp subject max size?
      * @todo length check first? (+ performance?)
      */
-    public function base64(): self {
+    public function base64(): self
+    {
         /*
             Special processing is performed if fewer than 24 bits are available
             at the end of the data being encoded.  A full encoding quantum is
@@ -36,7 +38,9 @@ class Encoding extends Rule {
             final unit of encoded output will be three characters followed by one
             "=" padding character.
          */
-        $this->addTest(__FUNCTION__, func_get_args(),
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (string $value) {
                 if (!preg_match('#^[a-zA-Z0-9/+]*={0,2}$#', $value)) {
                     throw new InvalidStringException('todo');
@@ -53,7 +57,8 @@ class Encoding extends Rule {
      * @link https://tools.ietf.org/html/rfc3548
      * @todo regexp subject max size?
      */
-    public function base32(): self {
+    public function base32(): self
+    {
         /*
             Special processing is performed if fewer than 40 bits are available
             at the end of the data being encoded.  A full encoding quantum is
@@ -84,9 +89,14 @@ class Encoding extends Rule {
             final unit of encoded output will be seven characters followed by one
             "=" padding character.
          */
-        $this->addTest(__FUNCTION__, func_get_args(),
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (string $value) {
-                if (!preg_match('#^(?:[A-Z2-7]{8})*(?:[A-Z2-7]{2}={6}|[A-Z2-7]{4}={4}|[A-Z2-7]{5}={3}|[A-Z2-7]{7}=)?$#', $value)) {
+                if (!preg_match(
+                    '#^(?:[A-Z2-7]{8})*(?:[A-Z2-7]{2}={6}|[A-Z2-7]{4}={4}|[A-Z2-7]{5}={3}|[A-Z2-7]{7}=)?$#',
+                    $value
+                )) {
                     throw new InvalidStringException('todo');
                 }
             }
@@ -101,8 +111,11 @@ class Encoding extends Rule {
      * @link https://tools.ietf.org/html/rfc3548
      * @todo regexp subject max size?
      */
-    public function base16(): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function base16(): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (string $value) {
                 if (!preg_match('#^[0-9A-F]*$#', $value)) {
                     throw new InvalidStringException('todo');
@@ -119,8 +132,11 @@ class Encoding extends Rule {
      * @todo regexp subject max size?
      * @todo http://php.net/ctype_xdigit
      */
-    public function hex(): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function hex(): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (string $value) {
                 if (!preg_match('#^[0-9A-Fa-f]*$#', $value)) {
                     throw new InvalidStringException('todo');
@@ -136,8 +152,11 @@ class Encoding extends Rule {
      * @return Encoding
      * @todo regexp subject max size?
      */
-    public function binary(): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function binary(): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (string $value) {
                 if (!preg_match('#^[01]*$#', $value)) {
                     throw new InvalidStringException('todo');
@@ -154,8 +173,11 @@ class Encoding extends Rule {
      * @todo regexp subject max size?
      * @todo http://php.net/manual/en/function.ctype-digit.php (performance?)
      */
-    public function decimal(): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function decimal(): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (string $value) {
                 if (!preg_match('#^[0-9]*$#', $value)) {
                     throw new InvalidStringException('todo');

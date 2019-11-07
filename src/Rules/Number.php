@@ -2,6 +2,7 @@
 
 namespace JozefGrencik\Validator\Rules;
 
-class Number implements iRule {
+class Number implements iRule
+{
 
 }

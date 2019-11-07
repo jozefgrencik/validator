@@ -2,6 +2,7 @@
 
 namespace JozefGrencik\Validator\Exceptions;
 
-class ValidatorException extends \Exception {
+class ValidatorException extends \Exception
+{
 
 }

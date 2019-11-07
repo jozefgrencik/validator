@@ -2,6 +2,7 @@
 
 namespace JozefGrencik\Validator\Rules;
 
-interface iRule {
+interface iRule
+{
 
 }

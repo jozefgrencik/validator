@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Validator\Rules;
@@ -6,13 +7,15 @@ namespace Tests\Validator\Rules;
 use JozefGrencik\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
-class NetTest extends TestCase {
+class NetTest extends TestCase
+{
 
     /**
      * Tests for Validator::net()->mac()
      * @throws \Exception
      */
-    public function testMac() {
+    public function testMac()
+    {
         $validator = Validator::net()->mac();
 
         //EUI-64
@@ -36,7 +39,8 @@ class NetTest extends TestCase {
      * Tests for Validator::net()->ip()
      * @throws \Exception
      */
-    public function testIp() {
+    public function testIp()
+    {
         $validator = Validator::net()->ip();
 
         //IP4
@@ -59,7 +63,7 @@ class NetTest extends TestCase {
 
         //misc
         $this->assertFalse($validator->isValid(''));
-        $this->assertFalse($validator->isValid(TRUE));
+        $this->assertFalse($validator->isValid(true));
         $this->assertFalse($validator->isValid(-1));
         $this->assertFalse($validator->isValid(INF));
     }
@@ -68,7 +72,8 @@ class NetTest extends TestCase {
      * Tests for Validator::net()->ip4()
      * @throws \Exception
      */
-    public function testIp4() {
+    public function testIp4()
+    {
         $validator = Validator::net()->ip4();
 
         $this->assertTrue($validator->isValid('127.0.0.1'));
@@ -82,7 +87,7 @@ class NetTest extends TestCase {
 
         //misc
         $this->assertFalse($validator->isValid(''));
-        $this->assertFalse($validator->isValid(TRUE));
+        $this->assertFalse($validator->isValid(true));
         $this->assertFalse($validator->isValid(-1));
         $this->assertFalse($validator->isValid(INF));
     }
@@ -91,7 +96,8 @@ class NetTest extends TestCase {
      * Tests for Validator::net()->ip6()
      * @throws \Exception
      */
-    public function testIp6() {
+    public function testIp6()
+    {
         $validator = Validator::net()->ip6();
 
         $this->assertTrue($validator->isValid('FE80:0000:0000:0000:0202:B3FF:FE1E:8329'));
@@ -103,7 +109,7 @@ class NetTest extends TestCase {
 
         //misc
         $this->assertFalse($validator->isValid(''));
-        $this->assertFalse($validator->isValid(TRUE));
+        $this->assertFalse($validator->isValid(true));
         $this->assertFalse($validator->isValid(-1));
         $this->assertFalse($validator->isValid(INF));
     }

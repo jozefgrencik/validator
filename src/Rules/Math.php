@@ -4,14 +4,18 @@ namespace JozefGrencik\Validator\Rules;
 
 use JozefGrencik\Validator\Exceptions\InvalidStringException;
 
-class Math extends Rule {
+class Math extends Rule
+{
 
     /**
      * Validates if value is prime number.
      * @return Math
      */
-    public function prime(): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function prime(): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (int $value) {
                 if (!Math::isPrime($value)) {
                     throw new InvalidStringException('todo');
@@ -27,17 +31,18 @@ class Math extends Rule {
      * @param int $value
      * @return bool
      */
-    private static function isPrime(int $value): bool {
+    private static function isPrime(int $value): bool
+    {
         if ($value < 2 || ($value > 2 && $value % 2 == 0)) {
-            return FALSE;
+            return false;
         }
 
         for ($i = 3; $i <= ceil(sqrt($value)); $i += 2) {
             if ($value % $i == 0) {
-                return FALSE;
+                return false;
             }
         }
 
-        return TRUE;
+        return true;
     }
 }

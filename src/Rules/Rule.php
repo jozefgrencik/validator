@@ -7,13 +7,14 @@ use JozefGrencik\Validator\Exceptions\InvalidStringException;
 /**
  * Parent of all rules.
  */
-class Rule implements iRule {
+class Rule implements iRule
+{
 
     /** @var array Array of tests */
     protected $tests = [];
 
     /** @var string|null */
-    protected $lastTestName = NULL;
+    protected $lastTestName = null;
 
     /**
      * todo
@@ -22,7 +23,8 @@ class Rule implements iRule {
      * @param callable $closure
      * @return Rule
      */
-    protected function addTest(string $testName, array $testArguments, callable $closure): self {
+    protected function addTest(string $testName, array $testArguments, callable $closure): self
+    {
         $testName = $this->getTestName($testName, $testArguments);
         $this->tests[] = ['name' => $testName, 'closure' => $closure];
 
@@ -35,7 +37,8 @@ class Rule implements iRule {
      * @param array $testArguments
      * @return Rule
      */
-    protected function alterLastName(string $testName, array $testArguments): self {
+    protected function alterLastName(string $testName, array $testArguments): self
+    {
         $this->tests[count($this->tests) - 1]['name'] = $this->getTestName($testName, $testArguments);
 
         return $this;
@@ -45,7 +48,8 @@ class Rule implements iRule {
      * Throws exception if one Test fails.
      * @param mixed $value
      */
-    public function assert($value) {
+    public function assert($value)
+    {
         foreach ($this->tests as $test) {
             $test['closure']($value);
         }
@@ -56,16 +60,17 @@ class Rule implements iRule {
      * @param mixed $value
      * @return bool
      */
-    public function isValid($value): bool {
+    public function isValid($value): bool
+    {
         foreach ($this->tests as $test) {
             try {
                 $test['closure']($value);
             } catch (InvalidStringException $exception) {
-                return FALSE;
+                return false;
             } //todo other catches
         }
 
-        return TRUE;
+        return true;
     }
 
     /**
@@ -74,7 +79,8 @@ class Rule implements iRule {
      * @param array $testArguments
      * @return string
      */
-    private function getTestName(string $testName, array $testArguments): string {
+    private function getTestName(string $testName, array $testArguments): string
+    {
         return $testName . '(' . implode(',', $testArguments) . ')';
     }
 }

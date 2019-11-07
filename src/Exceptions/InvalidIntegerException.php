@@ -2,6 +2,7 @@
 
 namespace JozefGrencik\Validator\Exceptions;
 
-class InvalidIntegerException extends ValidatorException {
+class InvalidIntegerException extends ValidatorException
+{
 
 }

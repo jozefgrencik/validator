@@ -4,14 +4,18 @@ namespace JozefGrencik\Validator\Rules;
 
 use JozefGrencik\Validator\Exceptions\InvalidIntegerException;
 
-class Integer extends Rule {
+class Integer extends Rule
+{
 
     /**
      * Check if integer is positive. (>=1)
      * @return Integer
      */
-    public function positive(): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function positive(): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (int $value) {
                 if ($value < 1) {
                     throw new InvalidIntegerException('todo');
@@ -26,8 +30,11 @@ class Integer extends Rule {
      * Check if integer is negative. (<=-1)
      * @return Integer
      */
-    public function negative(): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function negative(): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (string $value) {
                 if ($value > -1) {
                     throw new InvalidIntegerException('todo');
@@ -43,7 +50,8 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function eq(int $thanValue): self {
+    public function eq(int $thanValue): self
+    {
         $this
             ->equal($thanValue)
             ->alterLastName(__FUNCTION__, func_get_args());
@@ -56,8 +64,11 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function equal(int $thanValue): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function equal(int $thanValue): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (int $value) use ($thanValue) {
                 if ($value !== $thanValue) {
                     throw new InvalidIntegerException('todo');
@@ -73,7 +84,8 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function ne(int $thanValue): self {
+    public function ne(int $thanValue): self
+    {
         $this
             ->notEqual($thanValue)
             ->alterLastName(__FUNCTION__, func_get_args());
@@ -86,8 +98,11 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function notEqual(int $thanValue): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function notEqual(int $thanValue): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (int $value) use ($thanValue) {
                 if ($value === $thanValue) {
                     throw new InvalidIntegerException('todo');
@@ -103,7 +118,8 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function lt(int $thanValue): self {
+    public function lt(int $thanValue): self
+    {
         $this
             ->less($thanValue)
             ->alterLastName(__FUNCTION__, func_get_args());
@@ -116,8 +132,11 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function less(int $thanValue): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function less(int $thanValue): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (int $value) use ($thanValue) {
                 if ($value >= $thanValue) {
                     throw new InvalidIntegerException('todo');
@@ -133,7 +152,8 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function le(int $thanValue): self {
+    public function le(int $thanValue): self
+    {
         $this
             ->lessOrEqual($thanValue)
             ->alterLastName(__FUNCTION__, func_get_args());
@@ -146,8 +166,11 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function lessOrEqual(int $thanValue): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function lessOrEqual(int $thanValue): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (int $value) use ($thanValue) {
                 if ($value > $thanValue) {
                     throw new InvalidIntegerException('todo');
@@ -163,7 +186,8 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function gt(int $thanValue): self {
+    public function gt(int $thanValue): self
+    {
         $this
             ->greater($thanValue)
             ->alterLastName(__FUNCTION__, func_get_args());
@@ -176,8 +200,11 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function greater(int $thanValue): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function greater(int $thanValue): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (int $value) use ($thanValue) {
                 if ($value <= $thanValue) {
                     throw new InvalidIntegerException('todo');
@@ -193,7 +220,8 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function ge(int $thanValue): self {
+    public function ge(int $thanValue): self
+    {
         $this
             ->greaterOrEqual($thanValue)
             ->alterLastName(__FUNCTION__, func_get_args());
@@ -206,8 +234,11 @@ class Integer extends Rule {
      * @param int $thanValue
      * @return Integer
      */
-    public function greaterOrEqual(int $thanValue): self {
-        $this->addTest(__FUNCTION__, func_get_args(),
+    public function greaterOrEqual(int $thanValue): self
+    {
+        $this->addTest(
+            __FUNCTION__,
+            func_get_args(),
             function (int $value) use ($thanValue) {
                 if ($value < $thanValue) {
                     throw new InvalidIntegerException('todo');

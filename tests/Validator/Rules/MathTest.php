@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Validator\Rules;
@@ -6,13 +7,15 @@ namespace Tests\Validator\Rules;
 use JozefGrencik\Validator\Validator;
 use PHPUnit\Framework\TestCase;
 
-class MathTest extends TestCase {
+class MathTest extends TestCase
+{
 
     /**
      * Tests for Validator::math()->prime()
      * @throws \Exception
      */
-    public function testPrime() {
+    public function testPrime()
+    {
         //good: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
         $validator = Validator::math()->prime();
 

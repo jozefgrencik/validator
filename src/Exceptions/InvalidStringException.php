@@ -2,6 +2,7 @@
 
 namespace JozefGrencik\Validator\Exceptions;
 
-class InvalidStringException extends ValidatorException {
+class InvalidStringException extends ValidatorException
+{
 
 }

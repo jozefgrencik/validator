@@ -8,7 +8,8 @@ use JozefGrencik\Validator\Rules\Math;
 use JozefGrencik\Validator\Rules\Net;
 use JozefGrencik\Validator\Rules\Strings;
 
-class Validator {
+class Validator
+{
     const VERSION = 0.1;
     const VERSION_ID = 100;
 
@@ -16,7 +17,8 @@ class Validator {
      * todo
      * @return Strings
      */
-    public static function string(): Strings {
+    public static function string(): Strings
+    {
         return new Strings();
     }
 
@@ -25,7 +27,8 @@ class Validator {
      * todo rename keyword?
      * @return Integer
      */
-    public static function integer(): Integer {
+    public static function integer(): Integer
+    {
         return new Integer();
     }
 
@@ -33,7 +36,8 @@ class Validator {
      * todo
      * @return Math
      */
-    public static function math(): Math {
+    public static function math(): Math
+    {
         return new Math();
     }
 
@@ -41,7 +45,8 @@ class Validator {
      * todo
      * @return Net
      */
-    public static function net(): Net {
+    public static function net(): Net
+    {
         return new Net();
     }
 
@@ -49,7 +54,8 @@ class Validator {
      * todo
      * @return Encoding
      */
-    public static function encoding(): Encoding {
+    public static function encoding(): Encoding
+    {
         return new Encoding();
     }
 

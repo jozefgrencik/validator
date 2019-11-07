@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Validator\Rules;
@@ -7,18 +8,20 @@ use JozefGrencik\Validator\Exceptions\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use JozefGrencik\Validator\Validator;
 
-class StringsTest extends TestCase {
+class StringsTest extends TestCase
+{
 
     /**
      * Tests for Validator::string()->length()
      * @throws \Exception
      */
-    public function testLength() {
-        $wasException = FALSE;
+    public function testLength()
+    {
+        $wasException = false;
         try {
             Validator::string()->length(-1);
         } catch (InvalidArgumentException $exception) {
-            $wasException = TRUE;
+            $wasException = true;
         }
         $this->assertTrue($wasException);
 
@@ -48,7 +51,8 @@ class StringsTest extends TestCase {
      * Tests for Validator::string()->notEmpty()
      * @throws \Exception
      */
-    public function testNotEmpty() {
+    public function testNotEmpty()
+    {
         $validator = Validator::string()->notEmpty();
 
         //false
@@ -65,49 +69,50 @@ class StringsTest extends TestCase {
      * Tests for Validator::string()->lengthBetween()
      * @throws \Exception
      */
-    public function testLengthBetween() {
-        $wasException = FALSE;
+    public function testLengthBetween()
+    {
+        $wasException = false;
         try {
             Validator::string()->lengthBetween(-1, 5);
         } catch (InvalidArgumentException $exception) {
-            $wasException = TRUE;
+            $wasException = true;
         }
         $this->assertTrue($wasException);
 
 
-        $wasException = FALSE;
+        $wasException = false;
         try {
             Validator::string()->lengthBetween(5, -1);
         } catch (InvalidArgumentException $exception) {
-            $wasException = TRUE;
+            $wasException = true;
         }
         $this->assertTrue($wasException);
 
 
-        $wasException = FALSE;
+        $wasException = false;
         try {
             Validator::string()->lengthBetween(3, 1);
         } catch (InvalidArgumentException $exception) {
-            $wasException = TRUE;
+            $wasException = true;
         }
         $this->assertTrue($wasException);
 
         //first parameter NULL
-        $validator = Validator::string()->lengthBetween(NULL, 0);
+        $validator = Validator::string()->lengthBetween(null, 0);
         $this->assertTrue($validator->isValid(''));
         $this->assertFalse($validator->isValid(' '));
         $this->assertFalse($validator->isValid('č'));
         $this->assertFalse($validator->isValid('0'));
         $this->assertFalse($validator->isValid('lorem'));
 
-        $validator = Validator::string()->lengthBetween(NULL, 1);
+        $validator = Validator::string()->lengthBetween(null, 1);
         $this->assertTrue($validator->isValid(''));
         $this->assertTrue($validator->isValid(' '));
         $this->assertTrue($validator->isValid('č'));
         $this->assertTrue($validator->isValid('0'));
         $this->assertFalse($validator->isValid('lorem'));
 
-        $validator = Validator::string()->lengthBetween(NULL, 5);
+        $validator = Validator::string()->lengthBetween(null, 5);
         $this->assertTrue($validator->isValid(''));
         $this->assertTrue($validator->isValid(' '));
         $this->assertTrue($validator->isValid('č'));
@@ -115,21 +120,21 @@ class StringsTest extends TestCase {
         $this->assertTrue($validator->isValid('lorem'));
 
         //second parameter NULL
-        $validator = Validator::string()->lengthBetween(0, NULL);
+        $validator = Validator::string()->lengthBetween(0, null);
         $this->assertTrue($validator->isValid(''));
         $this->assertTrue($validator->isValid(' '));
         $this->assertTrue($validator->isValid('č'));
         $this->assertTrue($validator->isValid('0'));
         $this->assertTrue($validator->isValid('lorem'));
 
-        $validator = Validator::string()->lengthBetween(1, NULL);
+        $validator = Validator::string()->lengthBetween(1, null);
         $this->assertFalse($validator->isValid(''));
         $this->assertTrue($validator->isValid(' '));
         $this->assertTrue($validator->isValid('č'));
         $this->assertTrue($validator->isValid('0'));
         $this->assertTrue($validator->isValid('lorem'));
 
-        $validator = Validator::string()->lengthBetween(5, NULL);
+        $validator = Validator::string()->lengthBetween(5, null);
         $this->assertFalse($validator->isValid(''));
         $this->assertFalse($validator->isValid(' '));
         $this->assertFalse($validator->isValid('č'));
@@ -183,12 +188,13 @@ class StringsTest extends TestCase {
      * Tests for Validator::string()->maxLength()
      * @throws \Exception
      */
-    public function testMaxLength() {
-        $wasException = FALSE;
+    public function testMaxLength()
+    {
+        $wasException = false;
         try {
             Validator::string()->maxLength(-1);
         } catch (InvalidArgumentException $exception) {
-            $wasException = TRUE;
+            $wasException = true;
         }
         $this->assertTrue($wasException);
 
@@ -219,7 +225,8 @@ class StringsTest extends TestCase {
      * Tests for Validator::string()->empty()
      * @throws \Exception
      */
-    public function testEmpty() {
+    public function testEmpty()
+    {
         $validator = Validator::string()->empty();
 
         //true
@@ -236,12 +243,13 @@ class StringsTest extends TestCase {
      * Tests for Validator::string()->minLength()
      * @throws \Exception
      */
-    public function testMinLength() {
-        $wasException = FALSE;
+    public function testMinLength()
+    {
+        $wasException = false;
         try {
             Validator::string()->minLength(-1);
         } catch (InvalidArgumentException $exception) {
-            $wasException = TRUE;
+            $wasException = true;
         }
         $this->assertTrue($wasException);
 
